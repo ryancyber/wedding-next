@@ -105,7 +105,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#3a0d11] text-[#deaf5c] selection:bg-[#deaf5c] selection:text-[#3a0d11] flex justify-center relative overflow-hidden">
       {/* Hidden Audio Element */}
       <audio ref={audioRef} loop>
-        <source src="/JOKOWI - SEVENTEEN JKT48 (COVER AI).mp3" type="audio/mpeg" />
+        <source src="/wedding-next/JOKOWI - SEVENTEEN JKT48 (COVER AI).mp3" type="audio/mpeg" />
       </audio>
 
       {/* THREE.JS Particle Background Layer */}

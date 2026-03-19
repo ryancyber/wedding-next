@@ -51,6 +51,16 @@ Pekerjaan terbesar terjadi di halaman utama yang merangkum semua elemen mulai da
     5.  **Scroll Animations (3D Feeling)**: Di setiap bagian (*Section*), kita melampirkan blok `<motion.div>` dengan konfigurasi `whileInView`. Efek canggih seperti `scale`, `filter: blur(10px)`, `rotateX` aktif secara otomatis jika bagian itu dilihat (di-scroll) oleh mata pengunjung. Layar ini menghidupkan font warna putih-gading atau krem (*Off-white* / `#f9f5f0`).
     6.  **Wedding Gift Toggle**: Pada kartu Bank (BCA & BRI), ditambahkan fungsi bawaan browser modern, yakni `navigator.clipboard.writeText(...)` untuk memunculkan teks rekening yang segera disalin saat tombol *Salin* ditekan, diakhiri dengan peringatan sukses (`alert()`).
 
+## Tahap 6: Persiapan Deployment (GitHub Pages)
+Agar website undangan ini bisa diakses publik (online) melalui layanan **GitHub Pages**, kita perlu melakukan pengaturan build statis karena GitHub Pages tidak memiliki server Node.js khusus.
+
+*   **File yang dimodifikasi**: `next.config.ts` dan `app/page.tsx`
+*   **Penjelasan**:
+    - Di `next.config.ts`, kita menyalakan `output: 'export'` agar Next.js membungkus proyek menjadi murni HTML/CSS/JS statis, menghilangkan beban server rendering.
+    - Menambahkan `basePath: '/wedding-next'` untuk menyelaraskan tautan karena di GitHub URL yang tercipta adalah format `namaanda.github.io/wedding-next/`.
+    - Mengaktifkan `images: { unoptimized: true }` karena optimasi aset rasio gambar dari Vercel internal tidak didukung di file statis biasa.
+    - Di dalam `app/page.tsx`, path musik `"/JOKOWI - SEVENTEEN JKT48 (COVER AI).mp3"` ditambahkan *prefix* `basePath` menjadi `"/wedding-next/JOKOWI..."`. Tanpa tambahan `/wedding-next/` ini, browser akan tersesat mencari musik di `github.io/JOKOWI...` alih-alih di folder spesifik repo.
+
 ---
 ### Ringkasan Konsep:
 Secara keseluruhan sistem bekerja sebagai *Client Component* (`"use client"`) penuh karena sarat akan pergerakan Mouse, Sensor Scroll, Audio, Interaksi Form, serta Render DOM Three.js yang sifatnya sangat responsif di perangkat manapun.
