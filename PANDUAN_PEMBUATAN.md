@@ -32,24 +32,25 @@ Untuk memberikan kesan halaman yang "hidup" dan interaktif layaknya presentasi k
     - Latar belakang ini dilapisi transparan (`opacity-40`) dan `pointer-events-none` (tidak menutupi klik tombol lain) agar berada tepat di belakang UI undangan.
 
 ## Tahap 4: Logika API Buku Tamu (Guestbook Tanpa Database)
-Undangan pernikahan biasanya butuh database (seperti MySQL/PostgreSQL) untuk menyimpan ucapan. Demi mempermudah, kita meretas cara ini agar ucapannya tersimpan dalam bentuk file (JSON) lokal.
+Undangan pernikahan biasanya butuh database (seperti MySQL/PostgreSQL) untuk menyimpan ucapan. Demi mempermudah, kita menggunakan **Next.js API Routes** agar ucapannya tersimpan dalam bentuk file (JSON) di server.
 
 *   **File yang dibuat**: `app/api/wishes/route.ts` & file data `wishes.json`
 *   **Penjelasan**:
-    - **GET Method**: Saat pengunjung membuka undangan, Next.js akan membaca isi `wishes.json` memakai perintah `fs.readFileSync`.
-    - **POST Method**: Saat pengunjung mengirim ucapan, server menerima pesan tersebut (`name`, `message`, `attendance`), menambahkan ID unik, kemudian merombak file `wishes.json` secara otomatis untuk menyimpan pesan baru (`fs.writeFileSync`).
+    - **GET Method**: Membaca file `wishes.json` menggunakan library `fs/promises` dan mengembalikan data dalam format JSON ke Client.
+    - **POST Method**: Menerima input dari pengunjung (`name`, `message`, `attendance`), menambahkan ID unik & timestamp, lalu menyimpannya kembali ke file JSON.
+    - **Client-side Fetch**: Di `app/page.tsx`, kita mengganti logika `localStorage` dengan perintah `fetch('/api/wishes')` agar data ucapan bersifat global bagi semua pengunjung, bukan sekadar tersimpan di browser masing-masing.
 
 ## Tahap 5: Menyusun Tampilan Utama (Interaksi UI & Animasi)
 Pekerjaan terbesar terjadi di halaman utama yang merangkum semua elemen mulai dari sapaan bingkai hingga bagian akhir (Buku Tamu). Kita menggunakan library animasi **Framer Motion** untuk melengkapi semua interaksi pergerakan.
 
 *   **File yang dimodifikasi**: `app/page.tsx`
 *   **Penjelasan**:
-    1.  **State Management**: Menggunakan `useState` murni React untuk melacak status musik berjalan (`isPlaying`), menu undangan sudah dibuka (`isOpened`), status pengiriman buku tamu, dan data Hitung Mundur (Hari/Jam/Menit/Detik).
+    1.  **State Management**: Menggunakan `useState` murni React untuk melacak status musik berjalan (`isPlaying`), menu undangan sudah dibuka (`isOpened`), status pengiriman buku tamu, dan data Hitung Mundur.
     2.  **Audio Background**: Elemen `<audio>` HTML dimuat secara tersembunyi. Saat tombol "Buka Undangan" diklik, fungsi `playMusic()` akan dipanggil dan latar visual pun ikut terangkat.
-    3.  **Cover Transition**: Kita menset animasi pada tombol *"Buka Undangan"* di mana saat ditekan, layar pembuka akan melaju ke atas (`exit={{ y: "-100%" }}`) memisahkan diri seperti tirai secara halus.
-    4.  **Floating Navigation**: Memanfaatkan library **Lucide React** (Ikon), panel navigasi (Home, Couple, Event, dsb) dimunculkan menetap di bawah (`fixed bottom`) jika layar sudah dibuka.
-    5.  **Scroll Animations (3D Feeling)**: Di setiap bagian (*Section*), kita melampirkan blok `<motion.div>` dengan konfigurasi `whileInView`. Efek canggih seperti `scale`, `filter: blur(10px)`, `rotateX` aktif secara otomatis jika bagian itu dilihat (di-scroll) oleh mata pengunjung. Layar ini menghidupkan font warna putih-gading atau krem (*Off-white* / `#f9f5f0`).
-    6.  **Wedding Gift Toggle**: Pada kartu Bank (BCA & BRI), ditambahkan fungsi bawaan browser modern, yakni `navigator.clipboard.writeText(...)` untuk memunculkan teks rekening yang segera disalin saat tombol *Salin* ditekan, diakhiri dengan peringatan sukses (`alert()`).
+    3.  **Cover Transition**: Animasi tombol *"Buka Undangan"* yang mengangkat layar pembuka ke atas (`exit={{ y: "-100%" }}`).
+    4.  **Floating Navigation**: Memanfaatkan library **Lucide React** (Ikon), panel navigasi (Home, Couple, Event, dsb) dimunculkan di bagian bawah (`fixed bottom`).
+    5.  **Scroll Animations & Decorative Borders**: Di setiap bagian (*Section*), kita melampirkan blok `<motion.div>` dengan konfigurasi `whileInView`. Estetika diperkuat dengan penambahan **SVG Zig-zag Border** (`path d="M0 20 L10 10 L20 20 L30 10 L40 20"`) pada bagian bawah setiap section untuk memberikan nuansa pola etnik Bugis yang khas.
+    6.  **Wedding Gift Toggle**: Fitur salin nomor rekening menggunakan `navigator.clipboard.writeText(...)` pada kartu Bank (BCA & BRI).
 
 ## Tahap 6: Persiapan Deployment (GitHub Pages)
 Agar website undangan ini bisa diakses publik (online) melalui layanan **GitHub Pages**, kita perlu melakukan pengaturan build statis karena GitHub Pages tidak memiliki server Node.js khusus.

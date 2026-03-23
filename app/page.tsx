@@ -19,6 +19,18 @@ export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
+  // Lock body scroll when invitation is closed
+  useEffect(() => {
+    if (!isOpened) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpened]);
+
   const [name, setName] = useState("");
   const [attendance, setAttendance] = useState("hadir");
   const [message, setMessage] = useState("");
@@ -49,10 +61,18 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const saved = localStorage.getItem("wedding-wishes");
-    if (saved) {
-      setWishes(JSON.parse(saved));
-    }
+    const fetchWishes = async () => {
+      try {
+        const response = await fetch("/wedding-next/api/wishes");
+        if (response.ok) {
+          const data = await response.json();
+          setWishes(data);
+        }
+      } catch (error) {
+        console.error("Error fetching wishes:", error);
+      }
+    };
+    fetchWishes();
   }, []);
 
   const handleOpenInvitation = () => {
@@ -78,18 +98,28 @@ export default function Home() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate slight network delay for effect
-    setTimeout(() => {
-      const newWish = { id: Date.now().toString(), name, attendance, message };
-      const updatedWishes = [newWish, ...wishes];
-      setWishes(updatedWishes);
-      localStorage.setItem("wedding-wishes", JSON.stringify(updatedWishes));
-      
-      setName("");
-      setAttendance("hadir");
-      setMessage("");
+    const newWishData = { name, attendance, message };
+    
+    try {
+      const response = await fetch("/wedding-next/api/wishes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newWishData),
+      });
+
+      if (response.ok) {
+        const savedWish = await response.json();
+        setWishes([savedWish, ...wishes]);
+        setName("");
+        setAttendance("hadir");
+        setMessage("");
+      }
+    } catch (error) {
+      console.error("Error submitting wish:", error);
+      alert("Gagal mengirim ucapan, silakan coba lagi.");
+    } finally {
       setIsSubmitting(false);
-    }, 500);
+    }
   };
 
   const scrollTo = (id: string) => {
@@ -162,7 +192,7 @@ export default function Home() {
         {/* Right Side / Mobile Full: Scrollable Content */}
         <div className="w-full lg:w-1/2 min-h-screen relative flex justify-center bg-[#5c141d]">
           {/* Mobile Max-Width Container */}
-          <div className="w-full max-w-md bg-[#3a0d11] min-h-screen relative overflow-hidden shadow-2xl overflow-y-auto no-scrollbar scroll-smooth">
+          <div className={`w-full max-w-md bg-[#3a0d11] h-[100dvh] relative shadow-2xl no-scrollbar scroll-smooth ${isOpened ? "overflow-y-auto" : "overflow-hidden"}`}>
             
             {/* --- 1. COVER / OPENING SCREEN --- */}
             <AnimatePresence>
@@ -171,40 +201,73 @@ export default function Home() {
                   initial={{ y: 0, opacity: 1 }}
                   exit={{ y: "-100%", opacity: 0, scale: 1.05 }}
                   transition={{ duration: 1.2, ease: [0.77, 0, 0.175, 1] }}
-                  // FIX COVER CONSTRAINT: h-[100dvh] instead of min-h-screen guarantees it fits perfectly without scrolling overflow pushing down
-                  className="absolute inset-0 h-[100dvh] z-40 bg-[#5c141d] flex flex-col items-center justify-center p-8 text-center overscroll-none"
+                  className="absolute inset-0 h-[100dvh] z-40 bg-[#3a0d11] flex flex-col items-center justify-between p-8 text-center overscroll-none overflow-hidden"
                 >
+                  {/* Background Image Layer */}
+                  <div className="absolute inset-0 z-0">
+                    <Image
+                      src="wedding-next/WhatsApp Image 2026-03-14 at 09.57.42.jpeg" // Assuming this is the couple image or intended background
+                      alt="Wedding Background"
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                    {/* Blur and Gradient Overlays */}
+                    {/* <div className="absolute inset-0 bg-black/20 backdrop-blur-[2px]" /> */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#5c141d] via-[#5c141d]/60 to-transparent" />
+                  </div>
+
+                  {/* Decorative Architectural Pattern (Bottom) */}
                   <div 
-                    className="absolute inset-0 opacity-20 pointer-events-none"
+                    className="absolute bottom-0 left-0 w-full h-1/2 opacity-30 pointer-events-none z-10"
                     style={{
-                      backgroundImage: `url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M20 0l20 20-20 20L0 20z" fill="none" stroke="%23deaf5c" stroke-width="2"/></svg>')`,
-                      backgroundSize: '40px 40px'
+                      backgroundImage: `url('data:image/svg+xml;utf8,<svg width="1000" height="600" viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg"><path d="M0 600 L200 400 L400 600 L600 400 L800 600 L1000 400" fill="none" stroke="%23deaf5c" stroke-width="2" opacity="0.5"/><path d="M100 500 L300 300 L500 500 L700 300 L900 500" fill="none" stroke="%23deaf5c" stroke-width="1" opacity="0.3"/></svg>')`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'bottom'
                     }}
                   />
-                  
-                  <motion.div 
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.5 } }}
-                    transition={{ delay: 0.2, duration: 1, ease: "easeOut" }}
-                    className="relative z-10 space-y-12"
-                  >
-                    <div>
-                      <h2 className="text-sm tracking-[0.2em] uppercase mb-4 text-[#deaf5c]">The Wedding Of</h2>
-                      <h1 className="font-script text-6xl text-[#deaf5c]">Putri & Putra</h1>
-                    </div>
 
-                    <div className="space-y-4">
-                      <p className="text-sm italic opacity-80">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+                  {/* Content Container */}
+                  <div className="relative z-20 flex flex-col h-full justify-end pb-12 space-y-12 w-full">
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2, duration: 1 }}
+                      className="space-y-4"
+                    >
+                      <h2 className="text-sm tracking-[0.2em] uppercase text-[#f3f4f6] drop-shadow-lg">The Wedding Of</h2>
+                      <h1 className="font-script text-6xl text-[#deaf5c] drop-shadow-2xl">Putri & Putra</h1>
+                    </motion.div>
+
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4, duration: 1 }}
+                      className="space-y-8"
+                    >
+                      <div className="space-y-1">
+                        <p className="text-sm tracking-wide text-[#f3f4f6]">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+                        <p className="text-[10px] italic text-[#f3f4f6]/70">*Mohon maaf jika ada kesalahan dalam penulisan nama / gelar.</p>
+                      </div>
+
                       <button 
                         onClick={handleOpenInvitation}
-                        className="px-8 py-3 bg-[#deaf5c] text-[#3a0d11] rounded-full font-bold uppercase text-sm tracking-wider hover:bg-[#d1a555] transition-all transform hover:scale-105 flex items-center justify-center space-x-2 mx-auto"
+                        className="px-10 py-4 bg-[#deaf5c] text-[#3a0d11] rounded-full font-bold uppercase text-sm tracking-widest hover:bg-[#d1a555] transition-all transform hover:scale-105 flex items-center justify-center space-x-3 mx-auto shadow-2xl"
                       >
-                        <BookOpen size={18} />
+                        <BookOpen size={20} />
                         <span>Buka Undangan</span>
                       </button>
-                    </div>
-                  </motion.div>
+                    </motion.div>
+                  </div>
+
+                  {/* Bottom Border Decoration */}
+                  <div className="absolute bottom-0 left-0 w-full h-4 z-30 opacity-60"
+                       style={{
+                         backgroundImage: `url('data:image/svg+xml;utf8,<svg width="40" height="20" viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 20 L10 10 L20 20 L30 10 L40 20" fill="none" stroke="%23deaf5c" stroke-width="2"/></svg>')`,
+                         backgroundSize: '40px 20px',
+                         backgroundRepeat: 'repeat-x'
+                       }}
+                  />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -268,6 +331,15 @@ export default function Home() {
                     </a>
                   </div>
                     </motion.div>
+
+                    {/* Bottom Border Decoration */}
+                  <div className="absolute bottom-0 left-0 w-full h-4 z-30 opacity-60"
+                       style={{
+                         backgroundImage: `url('data:image/svg+xml;utf8,<svg width="40" height="20" viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 20 L10 10 L20 20 L30 10 L40 20" fill="none" stroke="%23deaf5c" stroke-width="2"/></svg>')`,
+                         backgroundSize: '40px 20px',
+                         backgroundRepeat: 'repeat-x'
+                       }}
+                  />
               </section>
 
               {/* Quran Verse Section */}
@@ -285,6 +357,15 @@ export default function Home() {
                     &quot;Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih dan sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berfikir.&quot;
                   </p>
                 </motion.div>
+
+                {/* Bottom Border Decoration */}
+                  <div className="absolute bottom-0 left-0 w-full h-4 z-30 opacity-60"
+                       style={{
+                         backgroundImage: `url('data:image/svg+xml;utf8,<svg width="40" height="20" viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 20 L10 10 L20 20 L30 10 L40 20" fill="none" stroke="%23deaf5c" stroke-width="2"/></svg>')`,
+                         backgroundSize: '40px 20px',
+                         backgroundRepeat: 'repeat-x'
+                       }}
+                  />
               </section>
 
               {/* Couple Info Section */}
@@ -293,14 +374,14 @@ export default function Home() {
                   initial={{ opacity: 0, y: 50, rotateX: 20 }}
                   whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 1.2, type: "spring", bounce: 0.4 }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
                   style={{ perspective: 1000 }}
                   className="space-y-16 z-10 relative"
                 >
                   <div className="space-y-4">
                     <div className="w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-[#deaf5c] bg-[#5c141d] shadow-2xl">
                       {/* Placeholder Image using UI Avatars */}
-                      <img src="https://ui-avatars.com/api/?name=Putri&background=deaf5c&color=3a0d11&size=256" alt="Putri" className="w-full h-full object-cover" />
+                      <img src="wedding-next/templates2.jpg" alt="Putri" className="w-full h-full object-cover" />
                     </div>
                     <h3 className="font-script text-4xl text-[#deaf5c]">Putri Maharani, S.E.</h3>
                     <p className="text-sm opacity-90 text-[#f9f5f0] font-light">Putri dari Bapak Fulan & Ibu Fulanah</p>
@@ -319,6 +400,15 @@ export default function Home() {
                     <p className="text-sm opacity-90 text-[#f9f5f0] font-light">Putra dari Bapak Fulan & Ibu Fulanah</p>
                   </div>
                 </motion.div>
+
+                {/* Bottom Border Decoration */}
+                  <div className="absolute bottom-0 left-0 w-full h-4 z-30 opacity-60"
+                       style={{
+                         backgroundImage: `url('data:image/svg+xml;utf8,<svg width="40" height="20" viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 20 L10 10 L20 20 L30 10 L40 20" fill="none" stroke="%23deaf5c" stroke-width="2"/></svg>')`,
+                         backgroundSize: '40px 20px',
+                         backgroundRepeat: 'repeat-x'
+                       }}
+                  />
               </section>
 
               {/* Event Schedule Section */}
@@ -368,6 +458,15 @@ export default function Home() {
                     </div>
                   </div>
                 </motion.div>
+
+                {/* Bottom Border Decoration */}
+                  <div className="absolute bottom-0 left-0 w-full h-4 z-30 opacity-60"
+                       style={{
+                         backgroundImage: `url('data:image/svg+xml;utf8,<svg width="40" height="20" viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 20 L10 10 L20 20 L30 10 L40 20" fill="none" stroke="%23deaf5c" stroke-width="2"/></svg>')`,
+                         backgroundSize: '40px 20px',
+                         backgroundRepeat: 'repeat-x'
+                       }}
+                  />
               </section>
 
               {/* Gallery Section */}
@@ -379,14 +478,25 @@ export default function Home() {
                   transition={{ duration: 1.2, ease: "easeOut" }}
                   className="space-y-8"
                 >
-                  <h2 className="text-3xl font-serif text-[#deaf5c]">Galeri</h2>
+                  <h2 className="text-3xl font-script text-[#deaf5c]">Galeri</h2>
                   <div className="grid grid-cols-2 gap-4">
-                    <motion.img whileHover={{ scale: 1.05 }} src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=400&h=400" alt="Gallery 1" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
-                    <motion.img whileHover={{ scale: 1.05 }} src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=400&h=400" alt="Gallery 2" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
-                    <motion.img whileHover={{ scale: 1.05 }} src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=400&h=400" alt="Gallery 3" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
-                    <motion.img whileHover={{ scale: 1.05 }} src="https://images.unsplash.com/photo-1542042161784-26ab9e041e89?auto=format&fit=crop&q=80&w=400&h=400" alt="Gallery 4" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
+                    <motion.img whileHover={{ scale: 1.05 }} src="wedding-next/WhatsApp Image 2026-03-14 at 09.57.42.jpeg" alt="Gallery 1" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
+                    <motion.img whileHover={{ scale: 1.05 }} src="wedding-next/WhatsApp Image 2026-03-14 at 09.59.35.jpeg" alt="Gallery 4" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
+                    <motion.img whileHover={{ scale: 1.05 }} src="wedding-next/WhatsApp Image 2026-03-14 at 09.59.19.jpeg" alt="Gallery 4" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
+                    <motion.img whileHover={{ scale: 1.05 }} src="wedding-next/WhatsApp Image 2026-03-14 at 09.58.58.jpeg" alt="Gallery 4" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
+                    <motion.img whileHover={{ scale: 1.05 }} src="wedding-next/WhatsApp Image 2026-03-14 at 09.58.33.jpeg" alt="Gallery 3" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
+                    <motion.img whileHover={{ scale: 1.05 }} src="wedding-next/WhatsApp Image 2026-03-14 at 09.58.01.jpeg" alt="Gallery 2" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
                   </div>
                 </motion.div>
+
+                {/* Bottom Border Decoration */}
+                  <div className="absolute bottom-0 left-0 w-full h-4 z-30 opacity-60"
+                       style={{
+                         backgroundImage: `url('data:image/svg+xml;utf8,<svg width="40" height="20" viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 20 L10 10 L20 20 L30 10 L40 20" fill="none" stroke="%23deaf5c" stroke-width="2"/></svg>')`,
+                         backgroundSize: '40px 20px',
+                         backgroundRepeat: 'repeat-x'
+                       }}
+                  />
               </section>
 
               {/* Wedding Gift Section */}
@@ -459,6 +569,15 @@ export default function Home() {
                     )}
                   </AnimatePresence>
                 </motion.div>
+
+                {/* Bottom Border Decoration */}
+                  <div className="absolute bottom-0 left-0 w-full h-4 z-30 opacity-60"
+                       style={{
+                         backgroundImage: `url('data:image/svg+xml;utf8,<svg width="40" height="20" viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 20 L10 10 L20 20 L30 10 L40 20" fill="none" stroke="%23deaf5c" stroke-width="2"/></svg>')`,
+                         backgroundSize: '40px 20px',
+                         backgroundRepeat: 'repeat-x'
+                       }}
+                  />
               </section>
 
               {/* Guestbook Section */}
@@ -530,6 +649,15 @@ export default function Home() {
                     )}
                   </div>
                 </motion.div>
+
+                {/* Bottom Border Decoration */}
+                  <div className="absolute bottom-0 left-0 w-full h-4 z-30 opacity-60"
+                       style={{
+                         backgroundImage: `url('data:image/svg+xml;utf8,<svg width="40" height="20" viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 20 L10 10 L20 20 L30 10 L40 20" fill="none" stroke="%23deaf5c" stroke-width="2"/></svg>')`,
+                         backgroundSize: '40px 20px',
+                         backgroundRepeat: 'repeat-x'
+                       }}
+                  />
               </section>
 
             </div>
