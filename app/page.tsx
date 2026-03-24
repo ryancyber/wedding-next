@@ -213,15 +213,11 @@ export default function Home() {
               <div className="absolute inset-x-0 inset-y-0 z-0 pointer-events-none">
                 {/* Couple Photo Background (Subtle) */}
                 <div 
-                  className="fixed inset-0 lg:absolute bg-cover bg-center bg-no-repeat opacity-20 filter grayscale-50 backdrop-blur-[1px] scale-105"
-                  style={{ backgroundImage: 'url("/wedding-next/WhatsApp Image 2026-03-14 at 09.57.42.jpeg")' }}
+                  className="fixed inset-0 lg:absolute bg-cover bg-center bg-no-repeat opacity-40 backdrop-blur-[0.5px] scale-105 transition-opacity duration-1000"
+                  style={{ backgroundImage: 'url("/wedding-next/WhatsApp Image 2026-03-24 at 20.23.39.jpeg")' }}
                 ></div>
-                {/* Premium Illustration Overlay */}
-                <div 
-                  className="fixed inset-0 lg:absolute bg-cover bg-center bg-no-repeat opacity-30 mix-blend-overlay scale-110"
-                  style={{ backgroundImage: 'url("/wedding-next/wedding_background_premium.png")' }}
-                ></div>
-                <div className="absolute inset-0 bg-gradient-to-b from-[#3a0d11]/80 via-[#5c141d]/70 to-[#3a0d11]/80 backdrop-blur-[1px]"></div>
+                {/* Overlay to ensure text readability */}
+                <div className="absolute inset-0 bg-gradient-to-b from-[#3a0d11]/70 via-[#5c141d]/50 to-[#3a0d11]/70"></div>
               </div>
             )}
             
@@ -365,7 +361,7 @@ export default function Home() {
                       <div className="absolute -inset-2 border-2 border-[#deaf5c]/60 rounded-t-full"></div>
                       <div className="w-full h-full overflow-hidden rounded-t-full border-4 border-[#deaf5c] shadow-2xl bg-[#5c141d]">
                         <img 
-                          src="/wedding-next/WhatsApp Image 2026-03-14 at 09.57.42.jpeg" 
+                          src="/wedding-next/WhatsApp Image 2026-03-24 at 20.23.39.jpeg" 
                           alt="Putri Aurelia" 
                           className="w-full h-full object-cover"
                         />
@@ -391,7 +387,7 @@ export default function Home() {
                       <div className="absolute -inset-2 border-2 border-[#deaf5c]/60 rounded-t-full"></div>
                       <div className="w-full h-full overflow-hidden rounded-t-full border-4 border-[#deaf5c] shadow-2xl bg-[#5c141d]">
                         <img 
-                          src="/wedding-next/WhatsApp Image 2026-03-14 at 09.58.01.jpeg" 
+                          src="/wedding-next/WhatsApp Image 2026-03-24 at 20.26.56.jpeg" 
                           alt="Riswandi" 
                           className="w-full h-full object-cover"
                         />
@@ -400,7 +396,7 @@ export default function Home() {
                     <div className="space-y-4">
                       <h3 className="font-script text-5xl text-[#deaf5c]">Riswandi</h3>
                       <p className="text-xs uppercase tracking-widest text-[#f9f5f0]/80 px-4">
-                         Putra Dari Bapak Fulan & Ibu Fulanah
+                         
                       </p>
                     </div>
                   </motion.div>
