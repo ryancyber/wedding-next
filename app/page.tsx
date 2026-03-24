@@ -193,12 +193,12 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 className="space-y-4"
               >
-                <h2 className="text-xl tracking-[0.3em] uppercase opacity-80 font-light text-[#f9f5f0]">The Wedding Of</h2>
-                <div className="w-12 h-px bg-[#deaf5c] mx-auto opacity-50"></div>
+                <h2 className="text-xl tracking-[0.3em] uppercase font-light text-[#f9f5f0]">The Wedding Of</h2>
+                <div className="w-12 h-px bg-[#deaf5c] mx-auto opacity-70"></div>
                 <h1 className="font-script text-8xl text-[#deaf5c] drop-shadow-2xl">
                   Putri Aurelia & Riswandi
                 </h1>
-                <p className="text-2xl opacity-90 tracking-[0.2em] font-light text-[#f9f5f0]">Sabtu, 04 April 2026</p>
+                <p className="text-2xl tracking-[0.2em] font-light text-[#f9f5f0]">Sabtu, 04 April 2026</p>
               </motion.div>
            </div>
         </div>
