@@ -236,7 +236,7 @@ export default function Home() {
                       className="space-y-4"
                     >
                       <h2 className="text-sm tracking-[0.2em] uppercase text-[#f3f4f6] drop-shadow-lg">The Wedding Of</h2>
-                      <h1 className="font-script text-6xl text-[#deaf5c] drop-shadow-2xl">Putri & Putra</h1>
+                      <h1 className="font-script text-6xl text-[#deaf5c] drop-shadow-2xl">Putri Aurelia & Putra</h1>
                     </motion.div>
 
                     <motion.div 
@@ -289,7 +289,7 @@ export default function Home() {
                   <div className="space-y-4">
                     <h2 className="text-lg font-bold uppercase tracking-[0.2em] text-[#deaf5c] drop-shadow-sm">Pernikahan</h2>
                     <div className="space-y-2 py-4">
-                      <h3 className="font-script font-bold text-7xl md:text-8xl shadow-sm">Putri</h3>
+                      <h3 className="font-script font-bold text-7xl md:text-8xl shadow-sm">Putri Aurelia</h3>
                       <p className="text-3xl opacity-80 font-script">&</p>
                       <h3 className="font-script font-bold text-7xl md:text-8xl shadow-sm">Putra</h3>
                     </div>
@@ -390,7 +390,7 @@ export default function Home() {
                     <div className="relative w-full h-full overflow-hidden rounded-2xl border-2 border-[#deaf5c] shadow-[0_0_30px_rgba(222,175,92,0.3)] bg-[#5c141d]">
                       <img 
                         src="wedding-next/WhatsApp Image 2026-03-14 at 09.57.42.jpeg" 
-                        alt="Putri & Putra" 
+                        alt="Putri Aurelia & Putra" 
                         className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" 
                       />
                       {/* Glossy Overlay */}

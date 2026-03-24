@@ -1,59 +1,38 @@
-import { GoogleSpreadsheet } from 'google-spreadsheet';
-import { JWT } from 'google-auth-library';
+// Client-side utility to interact with Google Sheets via Google Apps Script Proxy
+// This allows the site to remain static (GitHub Pages) while having dynamic guestbook features.
 
-const SCOPES = [
-  'https://www.googleapis.com/auth/spreadsheets',
-  'https://www.googleapis.com/auth/drive.file',
-];
-
-const jwt = new JWT({
-  email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-  key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-  scopes: SCOPES,
-});
-
-const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID || '', jwt);
+const SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_APPS_SCRIPT_URL || '';
 
 export async function getWishes() {
+  if (!SCRIPT_URL) return [];
   try {
-    await doc.loadInfo();
-    const sheet = doc.sheetsByIndex[0]; // Assuming the first sheet
-    const rows = await sheet.getRows();
-    
-    return rows.map(row => ({
-      id: row.get('id'),
-      name: row.get('name'),
-      attendance: row.get('attendance'),
-      message: row.get('message'),
-      createdAt: row.get('createdAt'),
-    }));
+    const response = await fetch(SCRIPT_URL);
+    if (!response.ok) throw new Error('Failed to fetch wishes');
+    return await response.json();
   } catch (error) {
-    console.error('Error fetching rows from Google Sheets:', error);
-    throw error;
+    console.error('Error fetching wishes:', error);
+    return [];
   }
 }
 
 export async function addWish(wish: { name: string; attendance: string; message: string; id: string; createdAt: string }) {
+  if (!SCRIPT_URL) {
+    console.error('GOOGLE_APPS_SCRIPT_URL is not defined');
+    return null;
+  }
   try {
-    await doc.loadInfo();
-    const sheet = doc.sheetsByIndex[0];
-    
-    // Load rows to check for headers
-    await sheet.loadHeaderRow().catch(() => {
-      // If loadHeaderRow fails, it means no headers are set
-      return null;
+    const response = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors', // Apps Script requires no-cors for simple POST or handles CORS specifically
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(wish),
     });
-
-    // If headers are missing or not what we expect, set them
-    if (sheet.headerValues.length === 0 || sheet.headerValues[0] !== 'id') {
-      await sheet.clear();
-      await sheet.setHeaderRow(['id', 'name', 'attendance', 'message', 'createdAt']);
-    }
-
-    await sheet.addRow(wish);
+    // Note: with no-cors, we can't read the response body, but the data will be sent.
     return wish;
   } catch (error) {
-    console.error('Error adding row to Google Sheets:', error);
+    console.error('Error adding wish:', error);
     throw error;
   }
 }
