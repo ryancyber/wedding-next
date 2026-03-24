@@ -63,7 +63,7 @@ export default function Home() {
   useEffect(() => {
     const fetchWishes = async () => {
       try {
-        const response = await fetch("/wedding-putri-dan-riswandi/api/wishes");
+        const response = await fetch("/wedding-putri-n-riswandi/api/wishes");
         if (response.ok) {
           const data = await response.json();
           setWishes(data);
@@ -101,7 +101,7 @@ export default function Home() {
     const newWishData = { name, attendance, message };
     
     try {
-      const response = await fetch("/wedding-putri-dan-riswandi/api/wishes", {
+      const response = await fetch("/wedding-putri-n-riswandi/api/wishes", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newWishData),
@@ -131,14 +131,14 @@ export default function Home() {
     <main className="min-h-screen bg-[#3a0d11] text-[#deaf5c] selection:bg-[#deaf5c] selection:text-[#3a0d11] flex justify-center relative overflow-hidden">
       {/* Hidden Audio Element */}
       <audio ref={audioRef} loop>
-        <source src="/wedding-putri-dan-riswandi/De Umelo Ko Tania Idi - Dianty Oslan ( Cover Music Video ) (mp3cut.net) (1).mp3" type="audio/mpeg" />
+        <source src="/wedding-putri-n-riswandi/De Umelo Ko Tania Idi - Dianty Oslan ( Cover Music Video ) (mp3cut.net) (1).mp3" type="audio/mpeg" />
       </audio>
 
       {/* Global Background Layer */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 mix-blend-overlay scale-105"
-          style={{ backgroundImage: 'url("/wedding-putri-dan-riswandi/wedding_background_premium.png")' }}
+          style={{ backgroundImage: 'url("/wedding-putri-n-riswandi/wedding_background_premium.png")' }}
         ></div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#3a0d11]/80 via-[#5c141d]/70 to-[#3a0d11]/90"></div>
       </div>
@@ -185,7 +185,7 @@ export default function Home() {
         {/* Left Side: Desktop Only */}
         <div className="hidden lg:flex w-1/2 min-h-screen relative flex-col items-center justify-center p-12 bg-[#5c141d] border-r border-[#deaf5c]/20 overflow-hidden">
            <div 
-             className="absolute inset-0 bg-[url('/wedding-putri-dan-riswandi/WhatsApp Image 2026-03-14 at 09.58.58.jpeg')] bg-cover bg-center bg-no-repeat opacity-40 pointer-events-none"
+             className="absolute inset-0 bg-[url('/wedding-putri-n-riswandi/WhatsApp Image 2026-03-14 at 09.58.58.jpeg')] bg-cover bg-center bg-no-repeat opacity-40 pointer-events-none"
            ></div>
            <div className="absolute inset-0 bg-[#5c141d]/60 backdrop-blur-[2px] z-0"></div>
            <div className="relative z-10 text-center space-y-8">
@@ -215,7 +215,7 @@ export default function Home() {
                 {/* Couple Photo Background (Subtle) */}
                 <div 
                   className="fixed inset-0 lg:absolute bg-cover bg-center bg-no-repeat opacity-60 backdrop-blur-[0.5px] scale-105 transition-opacity duration-1000"
-                  style={{ backgroundImage: 'url("/wedding-putri-dan-riswandi/WhatsApp Image 2026-03-14 at 09.58.33.jpeg")' }}
+                  style={{ backgroundImage: 'url("/wedding-putri-n-riswandi/WhatsApp Image 2026-03-14 at 09.58.33.jpeg")' }}
                 ></div>
                 {/* Overlay to ensure text readability */}
                 <div className="absolute inset-0 bg-gradient-to-b from-[#3a0d11]/40 via-[#5c141d]/20 to-[#3a0d11]/40"></div>
@@ -233,7 +233,7 @@ export default function Home() {
                 >
                   <div className="absolute inset-0 z-0">
                     <Image
-                      src="/wedding-putri-dan-riswandi/WhatsApp Image 2026-03-14 at 09.57.42.jpeg"
+                      src="/wedding-putri-n-riswandi/WhatsApp Image 2026-03-14 at 09.57.42.jpeg"
                       alt="Wedding Background"
                       fill
                       className="object-cover"
@@ -363,7 +363,7 @@ export default function Home() {
                       <div className="absolute -inset-2 border-2 border-[#deaf5c]/60 rounded-t-full"></div>
                       <div className="w-full h-full overflow-hidden rounded-t-full border-4 border-[#deaf5c] shadow-2xl bg-[#5c141d]">
                         <img 
-                          src="/wedding-putri-dan-riswandi/WhatsApp Image 2026-03-24 at 20.23.39.jpeg" 
+                          src="/wedding-putri-n-riswandi/WhatsApp Image 2026-03-24 at 20.23.39.jpeg" 
                           alt="Putri Aurelia" 
                           className="w-full h-full object-cover"
                         />
@@ -389,7 +389,7 @@ export default function Home() {
                       <div className="absolute -inset-2 border-2 border-[#deaf5c]/60 rounded-t-full"></div>
                       <div className="w-full h-full overflow-hidden rounded-t-full border-4 border-[#deaf5c] shadow-2xl bg-[#5c141d]">
                         <img 
-                          src="/wedding-putri-dan-riswandi/WhatsApp Image 2026-03-24 at 20.26.56.jpeg" 
+                          src="/wedding-putri-n-riswandi/WhatsApp Image 2026-03-24 at 20.26.56.jpeg" 
                           alt="Riswandi" 
                           className="w-full h-full object-cover"
                         />
@@ -418,7 +418,7 @@ export default function Home() {
                   <div className="space-y-8">
                     {/* Akad */}
                     <div className="relative p-8 rounded-t-[100px] border-2 border-[#deaf5c]/50 bg-[#5c141d]/80 overflow-hidden shadow-2xl mx-auto max-w-sm">
-                       <div className="absolute inset-0 bg-[#3a0d11]/40 backdrop-blur-sm -z-10[url('/wedding-putri-dan-riswandi/wedding_background_premium.png')] bg-cover opacity-10 mix-blend-overlay"></div>
+                       <div className="absolute inset-0 bg-[#3a0d11]/40 backdrop-blur-sm -z-10[url('/wedding-putri-n-riswandi/wedding_background_premium.png')] bg-cover opacity-10 mix-blend-overlay"></div>
                        <div className="relative z-10 space-y-4">
                           <h3 className="font-script text-4xl text-[#deaf5c]">Akad Nikah</h3>
                           <p className="text-sm font-bold text-[#f9f5f0]">Sabtu, 04 April 2026</p>
@@ -431,7 +431,7 @@ export default function Home() {
                     </div>
                     {/* Resepsi */}
                     <div className="relative p-8 rounded-t-[100px] border-2 border-[#deaf5c]/50 bg-[#5c141d]/80 overflow-hidden shadow-2xl mx-auto max-w-sm">
-                       <div className="absolute inset-0 bg-[url('/wedding-putri-dan-riswandi/wedding_background_premium.png')] bg-cover opacity-10 mix-blend-overlay"></div>
+                       <div className="absolute inset-0 bg-[url('/wedding-putri-n-riswandi/wedding_background_premium.png')] bg-cover opacity-10 mix-blend-overlay"></div>
                        <div className="relative z-10 space-y-4">
                           <h3 className="font-script text-4xl text-[#deaf5c]">Resepsi</h3>
                           <p className="text-sm font-bold text-[#f9f5f0]">Sabtu, 04 April 2026</p>
@@ -458,12 +458,12 @@ export default function Home() {
                 >
                   <h2 className="text-3xl font-script text-[#deaf5c]">Galeri</h2>
                   <div className="grid grid-cols-2 gap-4">
-                    <img src="/wedding-putri-dan-riswandi/WhatsApp Image 2026-03-14 at 09.57.42.jpeg" className="rounded-xl object-cover object-top w-full aspect-[3/4] shadow-2xl border-2 border-[#deaf5c]/40" alt="Gallery 1" />
-                    <img src="/wedding-putri-dan-riswandi/WhatsApp Image 2026-03-14 at 09.58.01.jpeg" className="rounded-xl object-cover object-top w-full aspect-[3/4] shadow-2xl border-2 border-[#deaf5c]/40" alt="Gallery 2" />
-                    <img src="/wedding-putri-dan-riswandi/WhatsApp Image 2026-03-14 at 09.58.33.jpeg" className="rounded-xl object-cover object-top w-full aspect-[3/4] shadow-2xl border-2 border-[#deaf5c]/40" alt="Gallery 3" />
-                    <img src="/wedding-putri-dan-riswandi/WhatsApp Image 2026-03-14 at 09.58.58.jpeg" className="rounded-xl object-cover object-top w-full aspect-[3/4] shadow-2xl border-2 border-[#deaf5c]/40" alt="Gallery 4" />
-                    <img src="/wedding-putri-dan-riswandi/WhatsApp Image 2026-03-14 at 09.59.19.jpeg" className="rounded-xl object-cover object-top w-full aspect-[3/4] shadow-2xl border-2 border-[#deaf5c]/40" alt="Gallery 5" />
-                    <img src="/wedding-putri-dan-riswandi/WhatsApp Image 2026-03-14 at 09.59.35.jpeg" className="rounded-xl object-cover object-top w-full aspect-[3/4] shadow-2xl border-2 border-[#deaf5c]/40" alt="Gallery 6" />
+                    <img src="/wedding-putri-n-riswandi/WhatsApp Image 2026-03-14 at 09.57.42.jpeg" className="rounded-xl object-cover object-top w-full aspect-[3/4] shadow-2xl border-2 border-[#deaf5c]/40" alt="Gallery 1" />
+                    <img src="/wedding-putri-n-riswandi/WhatsApp Image 2026-03-14 at 09.58.01.jpeg" className="rounded-xl object-cover object-top w-full aspect-[3/4] shadow-2xl border-2 border-[#deaf5c]/40" alt="Gallery 2" />
+                    <img src="/wedding-putri-n-riswandi/WhatsApp Image 2026-03-14 at 09.58.33.jpeg" className="rounded-xl object-cover object-top w-full aspect-[3/4] shadow-2xl border-2 border-[#deaf5c]/40" alt="Gallery 3" />
+                    <img src="/wedding-putri-n-riswandi/WhatsApp Image 2026-03-14 at 09.58.58.jpeg" className="rounded-xl object-cover object-top w-full aspect-[3/4] shadow-2xl border-2 border-[#deaf5c]/40" alt="Gallery 4" />
+                    <img src="/wedding-putri-n-riswandi/WhatsApp Image 2026-03-14 at 09.59.19.jpeg" className="rounded-xl object-cover object-top w-full aspect-[3/4] shadow-2xl border-2 border-[#deaf5c]/40" alt="Gallery 5" />
+                    <img src="/wedding-putri-n-riswandi/WhatsApp Image 2026-03-14 at 09.59.35.jpeg" className="rounded-xl object-cover object-top w-full aspect-[3/4] shadow-2xl border-2 border-[#deaf5c]/40" alt="Gallery 6" />
                   </div>
                 </motion.div>
               </section>
@@ -573,7 +573,7 @@ export default function Home() {
                   </div>
                 </motion.div>
                 
-                <div className="absolute inset-x-0 bottom-0 h-40 bg-[url('/wedding-putri-dan-riswandi/wedding_background_premium.png')] bg-contain bg-bottom bg-no-repeat opacity-30 pointer-events-none -z-10"></div>
+                <div className="absolute inset-x-0 bottom-0 h-40 bg-[url('/wedding-putri-n-riswandi/wedding_background_premium.png')] bg-contain bg-bottom bg-no-repeat opacity-30 pointer-events-none -z-10"></div>
               </section>
 
               <footer className="py-12 text-center opacity-50">
