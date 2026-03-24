@@ -184,8 +184,8 @@ export default function Home() {
           ></div>
           <div className="relative z-10 text-center space-y-6">
             <h2 className="text-xl tracking-widest uppercase">The Wedding Of</h2>
-            <h1 className="font-script text-7xl text-[#deaf5c] drop-shadow-lg">Putri Aurelia & Putra</h1>
-            <p className="text-lg opacity-90 mt-4 tracking-wide">Minggu, 28 Desember 2027</p>
+            <h1 className="font-script text-7xl text-[#deaf5c] drop-shadow-lg">Putri Aurelia & Riswandi</h1>
+            <p className="text-lg opacity-90 mt-4 tracking-wide">Sabtu, 04 April 2026</p>
           </div>
         </div>
 
@@ -297,7 +297,7 @@ export default function Home() {
                   
                   <div className="space-y-8">
                     <p className="text-md font-bold tracking-widest opacity-90 text-[#deaf5c]">
-                      Minggu, 28 Desember 2027
+                      Sabtu, 04 April 2026
                     </p>
                     
                     {/* Countdown Timer */}
@@ -411,7 +411,7 @@ export default function Home() {
                     {/* Bride Details */}
                     <div className="space-y-2">
                       <h3 className="font-script text-5xl text-[#deaf5c] drop-shadow-md">Putri Aurelia</h3>
-                      <p className="text-sm opacity-90 text-[#f9f5f0] font-light tracking-widest uppercase">Putri dari Bapak Fulan & Ibu Fulanah</p>
+                      <p className="text-sm opacity-90 text-[#f9f5f0] font-light tracking-widest uppercase">Putri pertama dari bpk Rustang dan ibu Hermawati</p>
                     </div>
                     
                     {/* Divider Text */}
@@ -455,15 +455,16 @@ export default function Home() {
                       <h3 className="font-script text-4xl text-[#deaf5c]">Akad Nikah</h3>
                       <div className="flex items-center justify-center space-x-2 text-sm text-[#f9f5f0]/90">
                         <Calendar size={16} />
-                        <span>Minggu, 28 Desember 2027</span>
+                        <span>Sabtu, 04 April 2026</span>
                       </div>
                       <div className="flex items-center justify-center space-x-2 text-sm text-[#f9f5f0]/90">
                         <MapPin size={16} />
-                        <span>Pukul 09:00 WITA - Selesai</span>
+                        <span>Pukul 10:00 WITA - Selesai</span>
                       </div>
                       <div className="pt-4 border-t border-[#deaf5c]/30">
-                        <h4 className="font-bold text-[#f9f5f0]">Gedung Mappanyukki</h4>
-                        <p className="text-sm mt-2 text-[#f9f5f0]/80 font-light">Jl. Contoh Alamat No. 123, Kota Makassar</p>
+                        <h4 className="font-bold text-[#f9f5f0]">Kediaman mempelai wanita
+Pammase, desa selli, kec bengo, kab bone</h4>
+                        <p className="text-sm mt-2 text-[#f9f5f0]/80 font-light"></p>
                       </div>
                     </div>
                   </div>
@@ -473,15 +474,16 @@ export default function Home() {
                       <h3 className="font-script text-4xl text-[#deaf5c]">Resepsi</h3>
                       <div className="flex items-center justify-center space-x-2 text-sm text-[#f9f5f0]/90">
                         <Calendar size={16} />
-                        <span>Minggu, 28 Desember 2027</span>
+                        <span>Sabtu, 04 April 2026</span>
                       </div>
                       <div className="flex items-center justify-center space-x-2 text-sm text-[#f9f5f0]/90">
                         <MapPin size={16} />
-                        <span>Pukul 11:00 WITA - Selesai</span>
+                        <span>Pukul 10:00 WITA - Selesai</span>
                       </div>
                       <div className="pt-4 border-t border-[#deaf5c]/30">
-                        <h4 className="font-bold text-[#f9f5f0]">Gedung Mappanyukki</h4>
-                        <p className="text-sm mt-2 text-[#f9f5f0]/80 font-light">Jl. Contoh Alamat No. 123, Kota Makassar</p>
+                        <h4 className="font-bold text-[#f9f5f0]">Kediaman mempelai wanita
+Pammase, desa selli, kec bengo, kab bone</h4>
+                        <p className="text-sm mt-2 text-[#f9f5f0]/80 font-light"></p>
                       </div>
                     </div>
                   </div>
@@ -564,33 +566,33 @@ export default function Home() {
                          {/* Card BCA */}
                          <div className="bg-[#5c141d]/90 backdrop-blur-sm p-6 rounded-xl border border-[#deaf5c]/50 text-left relative shadow-2xl mt-4">
                             <CreditCard className="absolute top-6 right-6 text-[#deaf5c]/50" size={32} />
-                            <h3 className="font-bold text-xl tracking-wider text-[#deaf5c] mb-6 italic">BCA</h3>
+                            <h3 className="font-bold text-xl tracking-wider text-[#deaf5c] mb-6 italic">BSI</h3>
                             <div className="space-y-2">
                                <p className="text-[10px] text-[#deaf5c] uppercase tracking-widest">No Rekening</p>
                                <div className="flex items-center justify-between">
-                                  <p className="font-bold text-lg tracking-widest text-[#f9f5f0]">123123123</p>
-                                  <button onClick={() => { navigator.clipboard.writeText("123123123"); alert("No Rekening Berhasil Disalin"); }} className="px-3 py-1 bg-[#deaf5c] text-[#3a0d11] rounded text-xs font-bold inline-flex items-center space-x-1 hover:bg-[#c99a4c]">
+                                  <p className="font-bold text-lg tracking-widest text-[#f9f5f0]">7174100505</p>
+                                  <button onClick={() => { navigator.clipboard.writeText("7174100505"); alert("No Rekening Berhasil Disalin"); }} className="px-3 py-1 bg-[#deaf5c] text-[#3a0d11] rounded text-xs font-bold inline-flex items-center space-x-1 hover:bg-[#c99a4c]">
                                     <Copy size={12} /><span>Salin</span>
                                   </button>
                                </div>
                                <p className="text-[10px] text-[#deaf5c] uppercase tracking-widest mt-4">Atas Nama</p>
-                               <p className="text-sm italic text-[#f9f5f0]/90">Putri Cantika Sari</p>
+                               <p className="text-sm italic text-[#f9f5f0]/90">Nurindah</p>
                             </div>
                          </div>
-                         {/* Card BRI */}
+                         {/* Card DANA */}
                          <div className="bg-[#5c141d]/90 backdrop-blur-sm p-6 rounded-xl border border-[#deaf5c]/50 text-left relative shadow-2xl">
                             <CreditCard className="absolute top-6 right-6 text-[#deaf5c]/50" size={32} />
-                            <h3 className="font-bold text-xl tracking-wider text-[#deaf5c] mb-6 italic">BANK BRI</h3>
+                            <h3 className="font-bold text-xl tracking-wider text-[#deaf5c] mb-6 italic">DANA</h3>
                             <div className="space-y-2">
-                               <p className="text-[10px] text-[#deaf5c] uppercase tracking-widest">No Rekening</p>
+                               <p className="text-[10px] text-[#deaf5c] uppercase tracking-widest">Nomor</p>
                                <div className="flex items-center justify-between">
-                                  <p className="font-bold text-lg tracking-widest text-[#f9f5f0]">321321321</p>
-                                  <button onClick={() => { navigator.clipboard.writeText("321321321"); alert("No Rekening Berhasil Disalin"); }} className="px-3 py-1 bg-[#deaf5c] text-[#3a0d11] rounded text-xs font-bold inline-flex items-center space-x-1 hover:bg-[#c99a4c]">
+                                  <p className="font-bold text-lg tracking-widest text-[#f9f5f0]">089604436922</p>
+                                  <button onClick={() => { navigator.clipboard.writeText("089604436922"); alert("Nomor Dana Berhasil Disalin"); }} className="px-3 py-1 bg-[#deaf5c] text-[#3a0d11] rounded text-xs font-bold inline-flex items-center space-x-1 hover:bg-[#c99a4c]">
                                     <Copy size={12} /><span>Salin</span>
                                   </button>
                                </div>
                                <p className="text-[10px] text-[#deaf5c] uppercase tracking-widest mt-4">Atas Nama</p>
-                               <p className="text-sm italic text-[#f9f5f0]/90">Putra Andika Pratama</p>
+                               <p className="text-sm italic text-[#f9f5f0]/90">Putri Aurelia</p>
                             </div>
                          </div>
                       </motion.div>
