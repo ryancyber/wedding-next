@@ -359,7 +359,7 @@ export default function Home() {
                 >
                   <Quote className="mx-auto text-[#deaf5c]/60" size={32} />
                   <p className="text-base leading-relaxed italic text-[#f9f5f0] drop-shadow-md font-medium">
-                    &quot;Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya...&quot;
+                    &quot;Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya. Dan dia menjadikan di antaramu rasa kasih dan sayang&quot;
                   </p>
                   <h4 className="font-serif text-[#deaf5c] text-lg drop-shadow-lg">QS. Ar-Rum: 21</h4>
                 </motion.div>
@@ -431,7 +431,12 @@ export default function Home() {
                   viewport={{ once: true }}
                   className="space-y-12"
                 >
-                  <h2 className="text-3xl font-serif text-[#deaf5c]">Jadwal Acara</h2>
+                  <div className="space-y-4">
+                    <h2 className="text-3xl font-serif text-[#deaf5c]">Jadwal Acara</h2>
+                    <p className="text-sm px-4 text-[#f9f5f0]/90 leading-relaxed max-w-sm mx-auto">
+                      Dengan mengucap syukur kepada Allah SWT, kami bermaksud mengundang Anda untuk dapat menghadiri acara pernikahan kami yang akan dilaksanakan pada :
+                    </p>
+                  </div>
                   <div className="space-y-8">
                     {/* Akad */}
                     <div className="relative p-8 rounded-t-[100px] border-2 border-[#deaf5c]/50 bg-[#5c141d]/80 overflow-hidden shadow-2xl mx-auto max-w-sm">
