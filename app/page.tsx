@@ -185,8 +185,9 @@ export default function Home() {
         {/* Left Side: Desktop Only */}
         <div className="hidden lg:flex w-1/2 min-h-screen relative flex-col items-center justify-center p-12 bg-[#5c141d] border-r border-[#deaf5c]/20 overflow-hidden">
            <div 
-             className="absolute inset-x-0 bottom-0 h-96 bg-[url('/wedding-next/wedding_background_premium.png')] bg-contain bg-bottom bg-no-repeat opacity-20 pointer-events-none"
+             className="absolute inset-0 bg-[url('/wedding-next/WhatsApp Image 2026-03-14 at 09.58.58.jpeg')] bg-cover bg-center bg-no-repeat opacity-40 pointer-events-none"
            ></div>
+           <div className="absolute inset-0 bg-[#5c141d]/60 backdrop-blur-[2px] z-0"></div>
            <div className="relative z-10 text-center space-y-8">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
