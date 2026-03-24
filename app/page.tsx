@@ -441,8 +441,10 @@ export default function Home() {
                 </motion.div>
               </section>
 
-              {/* Gallery */}
-              <section id="gallery" className="py-24 px-6 text-center border-b-2 border-[#deaf5c]/20">
+              {/* Gallery Section */}
+              <section id="gallery" className="py-24 px-6 text-center border-b-2 border-[#deaf5c]/20 relative z-10">
+                {/* Backdrop Overlay for Gallery content */}
+                <div className="absolute inset-0 bg-[#3a0d11]/60 backdrop-blur-sm -z-10"></div>
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
@@ -450,32 +452,33 @@ export default function Home() {
                   className="space-y-8"
                 >
                   <h2 className="text-3xl font-script text-[#deaf5c]">Galeri</h2>
-                  <div className="grid grid-cols-2 gap-3">
-                    <img src="/wedding-next/WhatsApp Image 2026-03-14 at 09.57.42.jpeg" className="rounded-lg object-cover w-full h-40 border border-[#deaf5c]/30" alt="Gallery" />
-                    <img src="/wedding-next/WhatsApp Image 2026-03-14 at 09.58.01.jpeg" className="rounded-lg object-cover w-full h-40 border border-[#deaf5c]/30" alt="Gallery" />
-                    <img src="/wedding-next/WhatsApp Image 2026-03-14 at 09.58.33.jpeg" className="rounded-lg object-cover w-full h-40 border border-[#deaf5c]/30" alt="Gallery" />
-                    <img src="/wedding-next/WhatsApp Image 2026-03-14 at 09.58.58.jpeg" className="rounded-lg object-cover w-full h-40 border border-[#deaf5c]/30" alt="Gallery" />
-                    <img src="/wedding-next/WhatsApp Image 2026-03-14 at 09.59.19.jpeg" className="rounded-lg object-cover w-full h-40 border border-[#deaf5c]/30" alt="Gallery" />
-                    <img src="/wedding-next/WhatsApp Image 2026-03-14 at 09.59.35.jpeg" className="rounded-lg object-cover w-full h-40 border border-[#deaf5c]/30" alt="Gallery" />
+                  <div className="grid grid-cols-2 gap-4">
+                    <img src="/wedding-next/WhatsApp Image 2026-03-14 at 09.57.42.jpeg" className="rounded-xl object-cover w-full h-44 shadow-2xl border-2 border-[#deaf5c]/40" alt="Gallery 1" />
+                    <img src="/wedding-next/WhatsApp Image 2026-03-14 at 09.58.01.jpeg" className="rounded-xl object-cover w-full h-44 shadow-2xl border-2 border-[#deaf5c]/40" alt="Gallery 2" />
+                    <img src="/wedding-next/WhatsApp Image 2026-03-14 at 09.58.33.jpeg" className="rounded-xl object-cover w-full h-44 shadow-2xl border-2 border-[#deaf5c]/40" alt="Gallery 3" />
+                    <img src="/wedding-next/WhatsApp Image 2026-03-14 at 09.58.58.jpeg" className="rounded-xl object-cover w-full h-44 shadow-2xl border-2 border-[#deaf5c]/40" alt="Gallery 4" />
+                    <img src="/wedding-next/WhatsApp Image 2026-03-14 at 09.59.19.jpeg" className="rounded-xl object-cover w-full h-44 shadow-2xl border-2 border-[#deaf5c]/40" alt="Gallery 5" />
+                    <img src="/wedding-next/WhatsApp Image 2026-03-14 at 09.59.35.jpeg" className="rounded-xl object-cover w-full h-44 shadow-2xl border-2 border-[#deaf5c]/40" alt="Gallery 6" />
                   </div>
                 </motion.div>
               </section>
 
-              {/* Wedding Gift */}
-              <section id="gift" className="py-24 px-6 text-center border-b-2 border-[#deaf5c]/20 bg-[#5c141d]/10">
+              {/* Wedding Gift Section */}
+              <section id="gift" className="py-24 px-6 text-center border-b-2 border-[#deaf5c]/20 relative z-10 overflow-hidden">
+                <div className="absolute inset-0 bg-[#3a0d11]/70 backdrop-blur-md -z-10"></div>
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   className="space-y-8"
                 >
-                  <h2 className="text-4xl font-script text-[#deaf5c]">Wedding Gift</h2>
-                  <p className="text-sm text-[#f9f5f0]/80 px-4">
-                    Jika memberi adalah ungkapan tanda kasih, Anda dapat memberi melalui dibawah ini.
+                  <h2 className="text-4xl font-script text-[#deaf5c] drop-shadow-lg">Wedding Gift</h2>
+                  <p className="text-sm text-[#f9f5f0] px-4 leading-relaxed font-light drop-shadow-sm">
+                    Jika memberi adalah ungkapan tanda kasih, Anda dapat memberi melalui akun di bawah ini.
                   </p>
                   <button 
                     onClick={() => setShowGift(!showGift)}
-                    className="px-8 py-3 bg-[#deaf5c] text-[#3a0d11] rounded-full font-bold uppercase text-xs"
+                    className="px-10 py-4 bg-[#deaf5c] text-[#3a0d11] rounded-full font-bold uppercase text-xs shadow-xl active:scale-95 transition-all"
                   >
                     Kirim Hadiah
                   </button>
@@ -506,47 +509,48 @@ export default function Home() {
                 </motion.div>
               </section>
 
-              {/* Guestbook */}
+              {/* Guestbook Section */}
               <section id="wishes" className="py-24 px-6 text-center relative z-10">
+                <div className="absolute inset-x-0 top-0 h-full bg-[#3a0d11]/80 backdrop-blur-lg -z-10"></div>
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   className="space-y-12"
                 >
-                  <h2 className="text-3xl font-serif text-[#deaf5c]">Buku Tamu</h2>
-                  <div className="bg-[#5c141d]/80 p-8 rounded-t-[50px] border-2 border-[#deaf5c]/50 shadow-2xl max-w-sm mx-auto">
-                    <form onSubmit={submitWish} className="space-y-4">
+                  <h2 className="text-3xl font-serif text-[#deaf5c] drop-shadow-md">Buku Tamu</h2>
+                  <div className="bg-[#3a0d11] p-8 rounded-t-[50px] border-2 border-[#deaf5c]/50 shadow-[0_0_50px_rgba(0,0,0,0.5)] max-w-sm mx-auto">
+                    <form onSubmit={submitWish} className="space-y-6">
                       <input
                         type="text"
                         placeholder="Nama"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        className="w-full bg-[#3a0d11]/50 border border-[#deaf5c]/30 rounded-full px-6 py-2 text-sm text-[#f9f5f0] focus:outline-none placeholder-[#deaf5c]/40"
+                        className="w-full bg-[#5c141d]/50 border-2 border-[#deaf5c]/30 rounded-full px-6 py-3 text-sm text-[#f9f5f0] focus:outline-none focus:border-[#deaf5c] placeholder-[#deaf5c]/60"
                         required
                       />
                       <select
                         value={attendance}
                         onChange={(e) => setAttendance(e.target.value)}
-                        className="w-full bg-[#3a0d11]/50 border border-[#deaf5c]/30 rounded-full px-6 py-2 text-sm text-[#f9f5f0] focus:outline-none"
+                        className="w-full bg-[#5c141d]/50 border-2 border-[#deaf5c]/30 rounded-full px-6 py-3 text-sm text-[#f9f5f0] focus:outline-none focus:border-[#deaf5c]"
                       >
-                        <option value="hadir">Hadir</option>
-                        <option value="tidak_hadir">Tidak Hadir</option>
-                        <option value="ragu">Ragu</option>
+                        <option value="hadir" className="bg-[#3a0d11]">Hadir</option>
+                        <option value="tidak_hadir" className="bg-[#3a0d11]">Tidak Hadir</option>
+                        <option value="ragu" className="bg-[#3a0d11]">Ragu</option>
                       </select>
                       <textarea
                         placeholder="Ucapan & Doa"
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
-                        className="w-full bg-[#3a0d11]/50 border border-[#deaf5c]/30 rounded-2xl px-6 py-3 text-sm text-[#f9f5f0] focus:outline-none placeholder-[#deaf5c]/40 min-h-[100px]"
+                        className="w-full bg-[#5c141d]/50 border-2 border-[#deaf5c]/30 rounded-2xl px-6 py-4 text-sm text-[#f9f5f0] focus:outline-none focus:border-[#deaf5c] placeholder-[#deaf5c]/60 min-h-[120px]"
                         required
                       ></textarea>
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-[#deaf5c] text-[#3a0d11] font-bold py-3 rounded-full text-sm hover:scale-105 transition-transform"
+                        className="w-full bg-[#deaf5c] text-[#3a0d11] font-extrabold py-4 rounded-full text-sm shadow-xl hover:bg-[#c99a4c] active:scale-95 transition-all"
                       >
-                        {isSubmitting ? "Mengirim..." : "Kirim"}
+                        {isSubmitting ? "Mengirim..." : "KIRIM UCAPAN"}
                       </button>
                     </form>
 
