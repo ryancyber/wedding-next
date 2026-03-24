@@ -31,14 +31,15 @@ Untuk memberikan kesan halaman yang "hidup" dan interaktif layaknya presentasi k
     - Kita membuat komponen `<RotatingStars />` yang men-generate 5000 partikel bintang secara acak yang bergerak/berotasi terus-menerus melalui *hook* `useFrame`.
     - Latar belakang ini dilapisi transparan (`opacity-40`) dan `pointer-events-none` (tidak menutupi klik tombol lain) agar berada tepat di belakang UI undangan.
 
-## Tahap 4: Logika API Buku Tamu (Guestbook Tanpa Database)
-Undangan pernikahan biasanya butuh database (seperti MySQL/PostgreSQL) untuk menyimpan ucapan. Demi mempermudah, kita menggunakan **Next.js API Routes** agar ucapannya tersimpan dalam bentuk file (JSON) di server.
+## Tahap 4: Logika API Buku Tamu (Google Sheets API)
+Undangan pernikahan ini menggunakan **Google Sheets** sebagai database untuk menyimpan ucapan. Ini mempermudah pemilik undangan untuk melihat data ucapan secara real-time langsung di spreadsheet tanpa perlu akses database teknis.
 
-*   **File yang dibuat**: `app/api/wishes/route.ts` & file data `wishes.json`
+*   **File yang dibuat/dimodifikasi**: `lib/googleSheets.ts`, `app/api/wishes/route.ts`
 *   **Penjelasan**:
-    - **GET Method**: Membaca file `wishes.json` menggunakan library `fs/promises` dan mengembalikan data dalam format JSON ke Client.
-    - **POST Method**: Menerima input dari pengunjung (`name`, `message`, `attendance`), menambahkan ID unik & timestamp, lalu menyimpannya kembali ke file JSON.
-    - **Client-side Fetch**: Di `app/page.tsx`, kita mengganti logika `localStorage` dengan perintah `fetch('/api/wishes')` agar data ucapan bersifat global bagi semua pengunjung, bukan sekadar tersimpan di browser masing-masing.
+    - **Utility `googleSheets.ts`**: Menggunakan library `google-spreadsheet` dan `google-auth-library` untuk mengelola koneksi ke Google Sheets API menggunakan Service Account.
+    - **GET Method**: Mengambil semua baris dari spreadsheet yang ditentukan, memetakan kolom (`id`, `name`, `attendance`, `message`, `createdAt`), dan mengembalikannya ke Client.
+    - **POST Method**: Menerima input dari pengunjung, menambahkan ID unik & timestamp, lalu menambahkannya sebagai baris baru di spreadsheet.
+    - **Keamanan**: Kredensial disimpan dengan aman di variabel lingkungan (`.env.local`) dan tidak diekspos ke sisi klien.
 
 ## Tahap 5: Menyusun Tampilan Utama (Interaksi UI & Animasi)
 Pekerjaan terbesar terjadi di halaman utama yang merangkum semua elemen mulai dari sapaan bingkai hingga bagian akhir (Buku Tamu). Kita menggunakan library animasi **Framer Motion** untuk melengkapi semua interaksi pergerakan.
@@ -62,6 +63,16 @@ Agar website undangan ini bisa diakses publik (online) melalui layanan **GitHub 
     - Mengaktifkan `images: { unoptimized: true }` karena optimasi aset rasio gambar dari Vercel internal tidak didukung di file statis biasa.
     - Di dalam `app/page.tsx`, path musik `"/JOKOWI - SEVENTEEN JKT48 (COVER AI).mp3"` ditambahkan *prefix* `basePath` menjadi `"/wedding-next/JOKOWI..."`. Tanpa tambahan `/wedding-next/` ini, browser akan tersesat mencari musik di `github.io/JOKOWI...` alih-alih di folder spesifik repo.
 
+## Tahap 7: Personalisasi Nama Tamu & Integrasi WhatsApp
+Untuk memberikan sentuhan personal bagi setiap tamu, kita menambahkan fitur yang secara otomatis menampilkan nama tamu di undangan dan mempermudah pengiriman melalui WhatsApp.
+
+*   **File yang dimodifikasi**: `app/page.tsx`, `Google Sheets (Daftar Tamu)`
+*   **Penjelasan**:
+    1.  **URL Parameters**: Menggunakan `useSearchParams` dari `next/navigation` untuk membaca parameter `?to=Nama+Tamu`.
+    2.  **Display Dinamis**: Nama tamu yang diambil dari URL ditampilkan secara otomatis pada layar pembuka (Cover) di atas tombol "Buka Undangan". Jika tidak ada parameter, teks akan kembali ke default ("Bapak/Ibu/Saudara/i").
+    3.  **Spreadsheet Guest List**: Menambahkan tab **"Daftar Tamu"** di Google Sheets yang berisi daftar nama dan nomor WhatsApp.
+    4.  **Auto-Generator Link**: Menggunakan rumus Excel/Sheets (`=ENCODEURL`) untuk secara otomatis membuat link unik untuk setiap tamu dan menyiapkan pesan undangan yang siap dikirim (Copy-Paste) ke WhatsApp.
+
 ---
 ### Ringkasan Konsep:
-Secara keseluruhan sistem bekerja sebagai *Client Component* (`"use client"`) penuh karena sarat akan pergerakan Mouse, Sensor Scroll, Audio, Interaksi Form, serta Render DOM Three.js yang sifatnya sangat responsif di perangkat manapun.
+Secara keseluruhan sistem bekerja sebagai *Client Component* (`"use client"`) penuh karena sarat akan pergerakan Mouse, Sensor Scroll, Audio, Interaksi Form, serta Render DOM Three.js yang sifatnya sangat responsif di perangkat manapun. Integrasi Google Sheets memastikan data tersimpan aman dan mudah dikelola tanpa perlu server database tambahan.

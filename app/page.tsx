@@ -131,7 +131,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#3a0d11] text-[#deaf5c] selection:bg-[#deaf5c] selection:text-[#3a0d11] flex justify-center relative overflow-hidden">
       {/* Hidden Audio Element */}
       <audio ref={audioRef} loop>
-        <source src="/wedding-next/JOKOWI - SEVENTEEN JKT48 (COVER AI).mp3" type="audio/mpeg" />
+        <source src="/wedding-next/De Umelo Ko Tania Idi - Dianty Oslan ( Cover Music Video ).mp3" type="audio/mpeg" />
       </audio>
 
       {/* THREE.JS Particle Background Layer */}
@@ -184,7 +184,7 @@ export default function Home() {
           ></div>
           <div className="relative z-10 text-center space-y-6">
             <h2 className="text-xl tracking-widest uppercase">The Wedding Of</h2>
-            <h1 className="font-script text-7xl text-[#deaf5c] drop-shadow-lg">Putri & Putra</h1>
+            <h1 className="font-script text-7xl text-[#deaf5c] drop-shadow-lg">Putri Aurelia & Putra</h1>
             <p className="text-lg opacity-90 mt-4 tracking-wide">Minggu, 28 Desember 2027</p>
           </div>
         </div>
@@ -369,46 +369,74 @@ export default function Home() {
               </section>
 
               {/* Couple Info Section */}
-              <section id="couple" className="py-24 px-8 text-center border-b-2 border-[#deaf5c]/20 relative">
+              <section id="couple" className="py-24 px-8 text-center border-b-2 border-[#deaf5c]/20 relative overflow-hidden">
+                {/* Decorative background elements for premium feel */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-[#deaf5c]/5 blur-[80px] rounded-full pointer-events-none" />
+                
                 <motion.div
-                  initial={{ opacity: 0, y: 50, rotateX: 20 }}
-                  whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 1.2, ease: "easeOut" }}
-                  style={{ perspective: 1000 }}
-                  className="space-y-16 z-10 relative"
+                  className="space-y-12 z-10 relative"
                 >
-                  <div className="space-y-4">
-                    <div className="w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-[#deaf5c] bg-[#5c141d] shadow-2xl">
-                      {/* Placeholder Image using UI Avatars */}
-                      <img src="wedding-next/templates2.jpg" alt="Putri" className="w-full h-full object-cover" />
+                  {/* Unified Couple Image Container */}
+                  <div className="relative mx-auto w-72 h-96">
+                    {/* Decorative Frames */}
+                    <div className="absolute -inset-4 border border-[#deaf5c]/30 rounded-2xl rotate-3" />
+                    <div className="absolute -inset-4 border border-[#deaf5c]/20 rounded-2xl -rotate-3" />
+                    
+                    {/* Main Image Frame */}
+                    <div className="relative w-full h-full overflow-hidden rounded-2xl border-2 border-[#deaf5c] shadow-[0_0_30px_rgba(222,175,92,0.3)] bg-[#5c141d]">
+                      <img 
+                        src="wedding-next/WhatsApp Image 2026-03-14 at 09.57.42.jpeg" 
+                        alt="Putri & Putra" 
+                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" 
+                      />
+                      {/* Glossy Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#3a0d11]/80 via-transparent to-transparent opacity-60" />
                     </div>
-                    <h3 className="font-script text-4xl text-[#deaf5c]">Putri Maharani, S.E.</h3>
-                    <p className="text-sm opacity-90 text-[#f9f5f0] font-light">Putri dari Bapak Fulan & Ibu Fulanah</p>
-                  </div>
-                  
-                  <div className="text-[#deaf5c]/50">
-                    <Heart className="mx-auto" size={24} />
+
+                    {/* Floating Heart Icon */}
+                    <motion.div 
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                      className="absolute -bottom-4 -right-4 w-12 h-12 bg-[#deaf5c] rounded-full flex items-center justify-center shadow-lg border-2 border-[#3a0d11]"
+                    >
+                      <Heart size={20} className="fill-[#3a0d11] text-[#3a0d11]" />
+                    </motion.div>
                   </div>
 
-                  <div className="space-y-4">
-                    <div className="w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-[#deaf5c] bg-[#5c141d] shadow-2xl">
-                      {/* Placeholder Image using UI Avatars */}
-                      <img src="https://ui-avatars.com/api/?name=Putra&background=deaf5c&color=3a0d11&size=256" alt="Putra" className="w-full h-full object-cover" />
+                  <div className="space-y-16 mt-8">
+                    {/* Bride Details */}
+                    <div className="space-y-2">
+                      <h3 className="font-script text-5xl text-[#deaf5c] drop-shadow-md">Putri Aurelia</h3>
+                      <p className="text-sm opacity-90 text-[#f9f5f0] font-light tracking-widest uppercase">Putri dari Bapak Fulan & Ibu Fulanah</p>
                     </div>
-                    <h3 className="font-script text-4xl text-[#deaf5c]">Putra Pratama, S.T.</h3>
-                    <p className="text-sm opacity-90 text-[#f9f5f0] font-light">Putra dari Bapak Fulan & Ibu Fulanah</p>
+                    
+                    {/* Divider Text */}
+                    <div className="flex items-center justify-center space-x-4 opacity-50">
+                      <div className="h-[1px] w-12 bg-[#deaf5c]" />
+                      <span className="font-script text-2xl text-[#deaf5c]">&</span>
+                      <div className="h-[1px] w-12 bg-[#deaf5c]" />
+                    </div>
+
+                    {/* Groom Details */}
+                    <div className="space-y-2">
+                      <h3 className="font-script text-5xl text-[#deaf5c] drop-shadow-md">Putra Pratama, S.T.</h3>
+                      <p className="text-sm opacity-90 text-[#f9f5f0] font-light tracking-widest uppercase">Putra dari Bapak Fulan & Ibu Fulanah</p>
+                    </div>
                   </div>
                 </motion.div>
 
                 {/* Bottom Border Decoration */}
-                  <div className="absolute bottom-0 left-0 w-full h-4 z-30 opacity-60"
-                       style={{
-                         backgroundImage: `url('data:image/svg+xml;utf8,<svg width="40" height="20" viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 20 L10 10 L20 20 L30 10 L40 20" fill="none" stroke="%23deaf5c" stroke-width="2"/></svg>')`,
-                         backgroundSize: '40px 20px',
-                         backgroundRepeat: 'repeat-x'
-                       }}
-                  />
+                <div className="absolute bottom-0 left-0 w-full h-4 z-30 opacity-60"
+                     style={{
+                       backgroundImage: `url('data:image/svg+xml;utf8,<svg width="40" height="20" viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 20 L10 10 L20 20 L30 10 L40 20" fill="none" stroke="%23deaf5c" stroke-width="2"/></svg>')`,
+                       backgroundSize: '40px 20px',
+                       backgroundRepeat: 'repeat-x'
+                     }}
+                />
               </section>
 
               {/* Event Schedule Section */}
