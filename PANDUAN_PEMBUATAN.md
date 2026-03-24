@@ -59,9 +59,9 @@ Agar website undangan ini bisa diakses publik (online) melalui layanan **GitHub 
 *   **File yang dimodifikasi**: `next.config.ts` dan `app/page.tsx`
 *   **Penjelasan**:
     - Di `next.config.ts`, kita menyalakan `output: 'export'` agar Next.js membungkus proyek menjadi murni HTML/CSS/JS statis, menghilangkan beban server rendering.
-    - Menambahkan `basePath: '/wedding-next'` untuk menyelaraskan tautan karena di GitHub URL yang tercipta adalah format `namaanda.github.io/wedding-next/`.
+    - Menambahkan `basePath: '/wedding-next'` untuk menyelaraskan tautan karena di GitHub URL yang tercipta adalah format `namaanda.github.io/wedding-putri-dan-riswandi/`.
     - Mengaktifkan `images: { unoptimized: true }` karena optimasi aset rasio gambar dari Vercel internal tidak didukung di file statis biasa.
-    - Di dalam `app/page.tsx`, path musik `"/JOKOWI - SEVENTEEN JKT48 (COVER AI).mp3"` ditambahkan *prefix* `basePath` menjadi `"/wedding-next/JOKOWI..."`. Tanpa tambahan `/wedding-next/` ini, browser akan tersesat mencari musik di `github.io/JOKOWI...` alih-alih di folder spesifik repo.
+    - Di dalam `app/page.tsx`, path musik `"/JOKOWI - SEVENTEEN JKT48 (COVER AI).mp3"` ditambahkan *prefix* `basePath` menjadi `"/wedding-putri-dan-riswandi/JOKOWI..."`. Tanpa tambahan `/wedding-putri-dan-riswandi/` ini, browser akan tersesat mencari musik di `github.io/JOKOWI...` alih-alih di folder spesifik repo.
 
 ## Tahap 7: Personalisasi Nama Tamu & Integrasi WhatsApp
 Untuk memberikan sentuhan personal bagi setiap tamu, kita menambahkan fitur yang secara otomatis menampilkan nama tamu di undangan dan mempermudah pengiriman melalui WhatsApp.
