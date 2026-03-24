@@ -138,7 +138,7 @@ export default function Home() {
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 mix-blend-overlay scale-105"
-          style={{ backgroundImage: 'url("/wedding-putri-n-riswandi/wedding_background_premium.png")' }}
+          style={{ backgroundImage: 'url("/wedding-putri-n-riswandi/WhatsApp Image 2026-03-14 at 09.58.58.jpeg")' }}
         ></div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#3a0d11]/80 via-[#5c141d]/70 to-[#3a0d11]/90"></div>
       </div>
@@ -215,7 +215,7 @@ export default function Home() {
                 {/* Couple Photo Background (Subtle) */}
                 <div 
                   className="fixed inset-0 lg:absolute bg-cover bg-center bg-no-repeat opacity-60 backdrop-blur-[0.5px] scale-105 transition-opacity duration-1000"
-                  style={{ backgroundImage: 'url("/wedding-putri-n-riswandi/WhatsApp Image 2026-03-14 at 09.58.33.jpeg")' }}
+                  style={{ backgroundImage: 'url("/wedding-putri-n-riswandi/WhatsApp Image 2026-03-14 at 09.58.58.jpeg")' }}
                 ></div>
                 {/* Overlay to ensure text readability */}
                 <div className="absolute inset-0 bg-gradient-to-b from-[#3a0d11]/40 via-[#5c141d]/20 to-[#3a0d11]/40"></div>
@@ -418,7 +418,7 @@ export default function Home() {
                   <div className="space-y-8">
                     {/* Akad */}
                     <div className="relative p-8 rounded-t-[100px] border-2 border-[#deaf5c]/50 bg-[#5c141d]/80 overflow-hidden shadow-2xl mx-auto max-w-sm">
-                       <div className="absolute inset-0 bg-[#3a0d11]/40 backdrop-blur-sm -z-10[url('/wedding-putri-n-riswandi/wedding_background_premium.png')] bg-cover opacity-10 mix-blend-overlay"></div>
+                       <div className="absolute inset-0 bg-[#3a0d11]/40 backdrop-blur-sm -z-10[url('/wedding-putri-n-riswandi/WhatsApp Image 2026-03-14 at 09.58.58.jpeg')] bg-cover opacity-10 mix-blend-overlay"></div>
                        <div className="relative z-10 space-y-4">
                           <h3 className="font-script text-4xl text-[#deaf5c]">Akad Nikah</h3>
                           <p className="text-sm font-bold text-[#f9f5f0]">Sabtu, 04 April 2026</p>
@@ -431,7 +431,7 @@ export default function Home() {
                     </div>
                     {/* Resepsi */}
                     <div className="relative p-8 rounded-t-[100px] border-2 border-[#deaf5c]/50 bg-[#5c141d]/80 overflow-hidden shadow-2xl mx-auto max-w-sm">
-                       <div className="absolute inset-0 bg-[url('/wedding-putri-n-riswandi/wedding_background_premium.png')] bg-cover opacity-10 mix-blend-overlay"></div>
+                       <div className="absolute inset-0 bg-[url('/wedding-putri-n-riswandi/WhatsApp Image 2026-03-14 at 09.58.58.jpeg')] bg-cover opacity-10 mix-blend-overlay"></div>
                        <div className="relative z-10 space-y-4">
                           <h3 className="font-script text-4xl text-[#deaf5c]">Resepsi</h3>
                           <p className="text-sm font-bold text-[#f9f5f0]">Sabtu, 04 April 2026</p>
@@ -573,7 +573,7 @@ export default function Home() {
                   </div>
                 </motion.div>
                 
-                <div className="absolute inset-x-0 bottom-0 h-40 bg-[url('/wedding-putri-n-riswandi/wedding_background_premium.png')] bg-contain bg-bottom bg-no-repeat opacity-30 pointer-events-none -z-10"></div>
+                <div className="absolute inset-x-0 bottom-0 h-40 bg-[url('/wedding-putri-n-riswandi/WhatsApp Image 2026-03-14 at 09.58.58.jpeg')] bg-contain bg-bottom bg-no-repeat opacity-30 pointer-events-none -z-10"></div>
               </section>
 
               <footer className="py-12 text-center opacity-50">
