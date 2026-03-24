@@ -206,7 +206,7 @@ export default function Home() {
                   {/* Background Image Layer */}
                   <div className="absolute inset-0 z-0">
                     <Image
-                      src="wedding-next/WhatsApp Image 2026-03-14 at 09.57.42.jpeg" // Assuming this is the couple image or intended background
+                      src="/wedding-next/WhatsApp Image 2026-03-14 at 09.57.42.jpeg" // Assuming this is the couple image or intended background
                       alt="Wedding Background"
                       fill
                       className="object-cover"
@@ -236,7 +236,7 @@ export default function Home() {
                       className="space-y-4"
                     >
                       <h2 className="text-sm tracking-[0.2em] uppercase text-[#f3f4f6] drop-shadow-lg">The Wedding Of</h2>
-                      <h1 className="font-script text-6xl text-[#deaf5c] drop-shadow-2xl">Putri Aurelia & Putra</h1>
+                      <h1 className="font-script text-6xl text-[#deaf5c] drop-shadow-2xl">Putri Aurelia & Riswandi</h1>
                     </motion.div>
 
                     <motion.div 
@@ -291,7 +291,7 @@ export default function Home() {
                     <div className="space-y-2 py-4">
                       <h3 className="font-script font-bold text-7xl md:text-8xl shadow-sm">Putri Aurelia</h3>
                       <p className="text-3xl opacity-80 font-script">&</p>
-                      <h3 className="font-script font-bold text-7xl md:text-8xl shadow-sm">Putra</h3>
+                      <h3 className="font-script font-bold text-7xl md:text-8xl shadow-sm">Riswandi</h3>
                     </div>
                   </div>
                   
@@ -389,8 +389,8 @@ export default function Home() {
                     {/* Main Image Frame */}
                     <div className="relative w-full h-full overflow-hidden rounded-2xl border-2 border-[#deaf5c] shadow-[0_0_30px_rgba(222,175,92,0.3)] bg-[#5c141d]">
                       <img 
-                        src="wedding-next/WhatsApp Image 2026-03-14 at 09.57.42.jpeg" 
-                        alt="Putri Aurelia & Putra" 
+                        src="/wedding-next/WhatsApp Image 2026-03-14 at 09.57.42.jpeg" 
+                        alt="Putri Aurelia & Riswandi" 
                         className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" 
                       />
                       {/* Glossy Overlay */}
@@ -423,8 +423,8 @@ export default function Home() {
 
                     {/* Groom Details */}
                     <div className="space-y-2">
-                      <h3 className="font-script text-5xl text-[#deaf5c] drop-shadow-md">Putra Pratama, S.T.</h3>
-                      <p className="text-sm opacity-90 text-[#f9f5f0] font-light tracking-widest uppercase">Putra dari Bapak Fulan & Ibu Fulanah</p>
+                      <h3 className="font-script text-5xl text-[#deaf5c] drop-shadow-md">Riswandi</h3>
+                      <p className="text-sm opacity-90 text-[#f9f5f0] font-light tracking-widest uppercase">Putra pertama dari bpk alm.Arsad dan ibu lina</p>
                     </div>
                   </div>
                 </motion.div>
@@ -508,12 +508,12 @@ export default function Home() {
                 >
                   <h2 className="text-3xl font-script text-[#deaf5c]">Galeri</h2>
                   <div className="grid grid-cols-2 gap-4">
-                    <motion.img whileHover={{ scale: 1.05 }} src="wedding-next/WhatsApp Image 2026-03-14 at 09.57.42.jpeg" alt="Gallery 1" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
-                    <motion.img whileHover={{ scale: 1.05 }} src="wedding-next/WhatsApp Image 2026-03-14 at 09.59.35.jpeg" alt="Gallery 4" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
-                    <motion.img whileHover={{ scale: 1.05 }} src="wedding-next/WhatsApp Image 2026-03-14 at 09.59.19.jpeg" alt="Gallery 4" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
-                    <motion.img whileHover={{ scale: 1.05 }} src="wedding-next/WhatsApp Image 2026-03-14 at 09.58.58.jpeg" alt="Gallery 4" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
-                    <motion.img whileHover={{ scale: 1.05 }} src="wedding-next/WhatsApp Image 2026-03-14 at 09.58.33.jpeg" alt="Gallery 3" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
-                    <motion.img whileHover={{ scale: 1.05 }} src="wedding-next/WhatsApp Image 2026-03-14 at 09.58.01.jpeg" alt="Gallery 2" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
+                    <motion.img whileHover={{ scale: 1.05 }} src="/wedding-next/WhatsApp Image 2026-03-14 at 09.57.42.jpeg" alt="Gallery 1" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
+                    <motion.img whileHover={{ scale: 1.05 }} src="/wedding-next/WhatsApp Image 2026-03-14 at 09.59.35.jpeg" alt="Gallery 4" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
+                    <motion.img whileHover={{ scale: 1.05 }} src="/wedding-next/WhatsApp Image 2026-03-14 at 09.59.19.jpeg" alt="Gallery 4" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
+                    <motion.img whileHover={{ scale: 1.05 }} src="/wedding-next/WhatsApp Image 2026-03-14 at 09.58.58.jpeg" alt="Gallery 4" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
+                    <motion.img whileHover={{ scale: 1.05 }} src="/wedding-next/WhatsApp Image 2026-03-14 at 09.58.33.jpeg" alt="Gallery 3" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
+                    <motion.img whileHover={{ scale: 1.05 }} src="/wedding-next/WhatsApp Image 2026-03-14 at 09.58.01.jpeg" alt="Gallery 2" className="rounded-md object-cover w-full h-40 border-2 border-[#deaf5c]/50 shadow-lg" />
                   </div>
                 </motion.div>
 
